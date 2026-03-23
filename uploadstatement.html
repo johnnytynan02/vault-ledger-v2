@@ -1,295 +1,131 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Import Transactions - Digital Vault</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Import Transactions - Digital Vault</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "on-secondary-fixed": "#002113",
-                        "on-primary": "#002682",
-                        "primary-fixed-dim": "#b7c4ff",
-                        "error": "#ffb4ab",
-                        "surface": "#111318",
-                        "surface-variant": "#333539",
-                        "on-secondary-fixed-variant": "#005236",
                         "primary": "#b7c4ff",
                         "secondary": "#4edea3",
-                        "tertiary-fixed": "#ffdadb",
-                        "on-surface": "#e2e2e8",
-                        "on-primary-fixed": "#001452",
-                        "background": "#111318",
-                        "on-tertiary-fixed": "#40000d",
-                        "tertiary-fixed-dim": "#ffb2b7",
-                        "surface-tint": "#b7c4ff",
-                        "surface-dim": "#111318",
-                        "on-primary-container": "#dfe3ff",
-                        "secondary-fixed": "#6ffbbe",
-                        "surface-container-highest": "#333539",
-                        "outline": "#8d90a2",
-                        "secondary-fixed-dim": "#4edea3",
-                        "error-container": "#93000a",
-                        "on-tertiary": "#67001b",
                         "tertiary": "#ffb2b7",
-                        "surface-bright": "#37393e",
-                        "surface-container-high": "#282a2e",
-                        "surface-container": "#1e2024",
-                        "on-error": "#690005",
-                        "on-error-container": "#ffdad6",
-                        "inverse-surface": "#e2e2e8",
-                        "on-tertiary-container": "#ffdcdd",
-                        "primary-container": "#0052ff",
-                        "inverse-on-surface": "#2f3035",
-                        "on-primary-fixed-variant": "#0038b6",
-                        "primary-fixed": "#dde1ff",
-                        "on-background": "#e2e2e8",
-                        "on-secondary": "#003824",
-                        "surface-container-lowest": "#0c0e12",
-                        "tertiary-container": "#c71941",
+                        "surface": "#111318",
+                        "on-surface": "#e2e2e8",
                         "on-surface-variant": "#c3c5d9",
-                        "on-secondary-container": "#00311f",
-                        "inverse-primary": "#004ced",
+                        "surface-container": "#1e2024",
                         "surface-container-low": "#1a1c20",
-                        "on-tertiary-fixed-variant": "#92002a",
+                        "surface-container-high": "#282a2e",
+                        "surface-container-highest": "#333539",
+                        "surface-container-lowest": "#0c0e12",
                         "outline-variant": "#434656",
-                        "secondary-container": "#00a572"
+                        "primary-container": "#0052ff",
                     },
                     fontFamily: {
                         "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "body": ["Inter"]
                     },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px" },
                 },
             },
         }
     </script>
-<style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .pulse-dot {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-surface text-on-surface selection:bg-primary/30">
-<!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full flex items-center justify-between px-6 h-16 bg-[#111318]/60 backdrop-blur-xl z-50">
-<div class="flex items-center gap-4">
-<span class="font-manrope font-extrabold text-[#b7c4ff] text-xl">Import</span>
-</div>
-<div class="absolute left-1/2 -translate-x-1/2 font-manrope font-bold tracking-tight text-lg text-[#b7c4ff]">
-            September 2023
+</head>
+<body class="bg-surface text-on-surface">
+
+    <header class="fixed top-0 left-0 w-full flex items-center justify-between px-6 h-16 bg-[#111318]/60 backdrop-blur-xl z-50">
+        <span class="font-headline font-extrabold text-[#b7c4ff] text-xl">Import</span>
+        <div class="font-headline font-bold text-lg text-[#b7c4ff]">September 2023</div>
+        <div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/20">
+            <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwHBRrDv1epw3dff5pSr80er0nqU53Awokdf37f1QBPvTK_KBT8k5jj1vm7ktmCF6l1uqRoErIUqi1Scb7wihay1Aogv_GTzi9Y0JdOQcZeg70K52nEtCsy0y7R-kyf6uC1C36BHqxe2UMT8UlCUAVfHmMLVD04LI9Xgh7Q94JZXjuxuPHHttX-aVGuor04MckUoKBXBV4urDB5dT_J_0CAJEs-OnQl0seZ7RHnpRKxTzmQ-q1dQ1DhI7jtoHBl4L8BBOl0twHa6tP"/>
         </div>
-<div class="flex items-center gap-4">
-<button class="w-10 h-10 flex items-center justify-center rounded-full text-[#434656] hover:bg-[#282a2e] transition-colors duration-200 active:scale-95">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/20">
-<img alt="User profile portrait" class="w-full h-full object-cover" data-alt="Close up professional male headshot portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwHBRrDv1epw3dff5pSr80er0nqU53Awokdf37f1QBPvTK_KBT8k5jj1vm7ktmCF6l1uqRoErIUqi1Scb7wihay1Aogv_GTzi9Y0JdOQcZeg70K52nEtCsy0y7R-kyf6uC1C36BHqxe2UMT8UlCUAVfHmMLVD04LI9Xgh7Q94JZXjuxuPHHttX-aVGuor04MckUoKBXBV4urDB5dT_J_0CAJEs-OnQl0seZ7RHnpRKxTzmQ-q1dQ1DhI7jtoHBl4L8BBOl0twHa6tP"/>
-</div>
-</div>
-</header>
-<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto min-h-screen">
-<!-- Main Bento Grid Layout -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-<!-- Step 1: Bank Selector (Asymmetric Span) -->
-<section class="md:col-span-8 space-y-4">
-<div class="flex items-center justify-between">
-<h2 class="text-xl font-bold font-headline tracking-tight">1. Select Source</h2>
-<span class="text-xs font-medium text-secondary flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-secondary pulse-dot"></span>
-                        Secure Connection Active
+    </header>
+
+    <main class="pt-24 pb-32 px-6 max-w-5xl mx-auto space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <section class="md:col-span-8 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold font-headline">1. Select Source</h2>
+                    <span class="text-xs font-medium text-secondary flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-secondary pulse-dot"></span> Secure Connection
                     </span>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-<!-- Bank Cards -->
-<button class="group bg-surface-container-low p-6 rounded-2xl flex flex-col items-center gap-4 border border-transparent hover:border-primary/30 transition-all duration-300 active:scale-95">
-<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
-</div>
-<span class="font-label font-semibold text-sm">Revolut</span>
-</button>
-<button class="group bg-surface-container-low p-6 rounded-2xl flex flex-col items-center gap-4 border border-transparent hover:border-primary/30 transition-all duration-300 active:scale-95">
-<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
-</div>
-<span class="font-label font-semibold text-sm">Wise</span>
-</button>
-<button class="group bg-surface-container-high ring-2 ring-primary p-6 rounded-2xl flex flex-col items-center gap-4 transition-all duration-300">
-<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary" data-icon="domain">domain</span>
-</div>
-<span class="font-label font-semibold text-sm text-primary">Lloyds</span>
-</button>
-<button class="group bg-surface-container-low p-6 rounded-2xl flex flex-col items-center gap-4 border border-transparent hover:border-primary/30 transition-all duration-300 active:scale-95">
-<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
-</div>
-<span class="font-label font-semibold text-sm">ASB</span>
-</button>
-</div>
-</section>
-<!-- Step 2: Currency & FX (Side Card) -->
-<section class="md:col-span-4 bg-surface-container-low p-6 rounded-3xl flex flex-col justify-between">
-<div class="space-y-4">
-<h2 class="text-lg font-bold font-headline tracking-tight">2. Base Currency</h2>
-<div class="relative group">
-<select class="w-full bg-surface-container-lowest border-none rounded-xl py-3 px-4 appearance-none focus:ring-2 focus:ring-primary/40 text-on-surface font-medium transition-all">
-<option value="GBP">GBP - British Pound</option>
-<option value="USD">USD - US Dollar</option>
-<option value="EUR">EUR - Euro</option>
-<option value="NZD">NZD - NZ Dollar</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
-</div>
-</div>
-<div class="mt-8 p-4 bg-surface-container-high rounded-2xl border-l-4 border-secondary">
-<div class="flex items-center justify-between mb-2">
-<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">FX Intelligence</span>
-<span class="material-symbols-outlined text-secondary text-sm" data-icon="auto_awesome">auto_awesome</span>
-</div>
-<p class="text-xs text-on-surface-variant leading-relaxed">
-                        Detected <span class="text-on-surface font-semibold">ASB NZD</span> statement. Automated FX conversion applied:
-                    </p>
-<p class="text-lg font-mono font-bold mt-2 text-on-surface">1 NZD = 0.48 GBP</p>
-</div>
-</section>
-<!-- Step 3: File Upload (Full Width Glassmorphism) -->
-<section class="md:col-span-12">
-<div class="relative group cursor-pointer">
-<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl blur-xl group-hover:opacity-100 opacity-0 transition-opacity"></div>
-<div class="relative bg-surface-container-low/80 backdrop-blur-md border-2 border-dashed border-outline-variant/30 rounded-3xl p-12 flex flex-col items-center text-center transition-all hover:border-primary/50">
-<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center mb-6 shadow-xl">
-<span class="material-symbols-outlined text-primary text-4xl" data-icon="upload_file">upload_file</span>
-</div>
-<h3 class="text-2xl font-bold font-headline mb-2">Upload your statement</h3>
-<p class="text-on-surface-variant max-w-sm mx-auto mb-8">
-                            Drag and drop your CSV file here or <span class="text-primary font-semibold underline decoration-primary/30 underline-offset-4">browse your vault</span>.
-                        </p>
-<div class="flex gap-3">
-<span class="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] font-bold text-outline-variant uppercase tracking-tighter">Support: CSV, XLS</span>
-<span class="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] font-bold text-outline-variant uppercase tracking-tighter">Max Size: 10MB</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Step 4: Mapping Preview (Conditional Mockup) -->
-<section class="md:col-span-12 space-y-4">
-<div class="flex items-center justify-between px-2">
-<h2 class="text-xl font-bold font-headline tracking-tight">3. Mapping Preview</h2>
-<button class="text-xs font-semibold text-primary flex items-center gap-1 hover:gap-2 transition-all">
-                        Edit Map Logic <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</div>
-<div class="overflow-hidden rounded-3xl bg-surface-container-low shadow-2xl">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-high">
-<th class="px-6 py-4">
-<div class="flex flex-col gap-1">
-<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Map To</span>
-<span class="text-sm font-bold text-on-surface">Date</span>
-</div>
-</th>
-<th class="px-6 py-4">
-<div class="flex flex-col gap-1">
-<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Map To</span>
-<span class="text-sm font-bold text-on-surface">Description</span>
-</div>
-</th>
-<th class="px-6 py-4 text-right">
-<div class="flex flex-col gap-1">
-<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Map To</span>
-<span class="text-sm font-bold text-on-surface">Amount</span>
-</div>
-</th>
-<th class="px-6 py-4 text-center">
-<span class="text-[10px] font-bold text-outline uppercase tracking-widest">Status</span>
-</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant/10">
-<tr class="hover:bg-surface-container-high/50 transition-colors">
-<td class="px-6 py-5 font-mono text-xs text-on-surface-variant">2023-09-12</td>
-<td class="px-6 py-5 text-sm font-medium">Waitrose &amp; Partners LONDON</td>
-<td class="px-6 py-5 text-right font-mono text-sm text-tertiary">-£42.50</td>
-<td class="px-6 py-5 text-center">
-<span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-high/50 transition-colors">
-<td class="px-6 py-5 font-mono text-xs text-on-surface-variant">2023-09-14</td>
-<td class="px-6 py-5 text-sm font-medium">TFL TRAVEL CH</td>
-<td class="px-6 py-5 text-right font-mono text-sm text-tertiary">-£8.20</td>
-<td class="px-6 py-5 text-center">
-<span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-high/50 transition-colors">
-<td class="px-6 py-5 font-mono text-xs text-on-surface-variant">2023-09-15</td>
-<td class="px-6 py-5 text-sm font-medium">STRIPE - MONTHLY REVENUE</td>
-<td class="px-6 py-5 text-right font-mono text-sm text-secondary">+£2,450.00</td>
-<td class="px-6 py-5 text-center">
-<span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<!-- Process Button (Center Focused) -->
-<section class="md:col-span-12 py-8 flex flex-col items-center gap-4">
-<button class="group relative w-full max-w-md px-8 py-5 bg-gradient-to-r from-primary to-primary-container rounded-2xl overflow-hidden transition-all duration-300 active:scale-95 shadow-2xl shadow-primary/20">
-<div class="relative z-10 flex items-center justify-center gap-3">
-<span class="font-headline font-extrabold text-on-primary text-lg">Import &amp; Categorize</span>
-<span class="material-symbols-outlined text-on-primary group-hover:translate-x-1 transition-transform" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
-</div>
-</button>
-<p class="text-xs text-outline-variant font-medium flex items-center gap-2">
-<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
-                    Encrypted with AES-256 military-grade protection
-                </p>
-</section>
-</div>
-</main>
-<!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#111318]/60 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-8px_32px_rgba(0,0,0,0.3)]">
-<a class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Dashboard</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90" href="#">
-<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Transactions</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#b7c4ff] bg-[#1e2024] rounded-2xl py-2 px-4 transition-all duration-200 active:scale-90" href="#">
-<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Import</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90" href="#">
-<span class="material-symbols-outlined" data-icon="insights">insights</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Insights</span>
-</a>
-</nav>
-</body></html>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <button class="bg-surface-container-low p-6 rounded-2xl flex flex-col items-center gap-4 border border-transparent hover:border-primary/30 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+                        <span class="text-sm font-semibold">Revolut</span>
+                    </button>
+                    <button class="bg-surface-container-high ring-2 ring-primary p-6 rounded-2xl flex flex-col items-center gap-4 transition-all">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <span class="text-sm font-bold text-primary">Lloyds</span>
+                    </button>
+                    </div>
+            </section>
+
+            <section class="md:col-span-4 bg-surface-container-low p-6 rounded-3xl flex flex-col justify-between border border-outline-variant/10">
+                <div class="space-y-4">
+                    <h2 class="text-lg font-bold font-headline">2. Base Currency</h2>
+                    <select class="w-full bg-surface-container-lowest border-none rounded-xl py-3 px-4 text-on-surface focus:ring-2 focus:ring-primary/40">
+                        <option value="GBP">GBP - British Pound</option>
+                        <option value="USD">USD - US Dollar</option>
+                    </select>
+                </div>
+                <div class="mt-8 p-4 bg-surface-container-high rounded-2xl border-l-4 border-secondary text-xs">
+                    <p class="text-secondary font-bold uppercase mb-1">FX Intelligence</p>
+                    <p class="text-on-surface-variant leading-relaxed">Automated FX conversion applied: <br><span class="text-on-surface font-mono font-bold text-lg">1 NZD = 0.48 GBP</span></p>
+                </div>
+            </section>
+
+            <section class="md:col-span-12">
+                <div class="relative bg-surface-container-low/80 backdrop-blur-md border-2 border-dashed border-outline-variant/30 rounded-3xl p-12 flex flex-col items-center text-center hover:border-primary/50 transition-all cursor-pointer group">
+                    <div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-4xl">upload_file</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-headline mb-2">Upload your statement</h3>
+                    <p class="text-on-surface-variant max-w-sm mx-auto mb-8">Drag and drop your CSV file here or browse your vault.</p>
+                    <div class="flex gap-3">
+                        <span class="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] font-bold text-outline-variant uppercase">CSV, XLS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest rounded-full text-[10px] font-bold text-outline-variant uppercase">Max 10MB</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-12 flex flex-col items-center py-8">
+                <button class="w-full max-w-md py-5 bg-gradient-to-r from-primary to-primary-container rounded-2xl shadow-xl shadow-primary/20 active:scale-95 transition-all text-on-primary font-headline font-extrabold text-lg flex items-center justify-center gap-3">
+                    Import & Categorize <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#111318]/90 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-8px_32px_rgba(0,0,0,0.3)]">
+        <a href="index.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Dashboard</span>
+        </a>
+        <a href="alltransactions.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined">receipt_long</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Transactions</span>
+        </a>
+        <a href="uploadstatement.html" class="flex flex-col items-center text-[#b7c4ff] bg-[#1e2024] rounded-2xl py-2 px-4 transition-all">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Import</span>
+        </a>
+        <a href="insights.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined">insights</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Insights</span>
+        </a>
+    </nav>
+</body>
+</html>

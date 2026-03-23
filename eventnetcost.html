@@ -1,281 +1,154 @@
 <!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Transaction Detail | Digital Vault</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#b7c4ff",
+                "secondary": "#4edea3",
+                "tertiary": "#ffb2b7",
+                "surface": "#111318",
+                "on-surface": "#e2e2e8",
+                "on-surface-variant": "#c3c5d9",
+                "surface-container": "#1e2024",
+                "surface-container-low": "#1a1c20",
+                "surface-container-high": "#282a2e",
+                "surface-container-lowest": "#0c0e12",
+                "outline": "#8d90a2",
+                "outline-variant": "#434656",
+                "primary-container": "#0052ff",
+              },
+              fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"]
+              },
+            },
+          },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #111318; color: #e2e2e8; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body">
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "on-secondary-fixed": "#002113",
-            "on-primary": "#002682",
-            "primary-fixed-dim": "#b7c4ff",
-            "error": "#ffb4ab",
-            "surface": "#111318",
-            "surface-variant": "#333539",
-            "on-secondary-fixed-variant": "#005236",
-            "primary": "#b7c4ff",
-            "secondary": "#4edea3",
-            "tertiary-fixed": "#ffdadb",
-            "on-surface": "#e2e2e8",
-            "on-primary-fixed": "#001452",
-            "background": "#111318",
-            "on-tertiary-fixed": "#40000d",
-            "tertiary-fixed-dim": "#ffb2b7",
-            "surface-tint": "#b7c4ff",
-            "surface-dim": "#111318",
-            "on-primary-container": "#dfe3ff",
-            "secondary-fixed": "#6ffbbe",
-            "surface-container-highest": "#333539",
-            "outline": "#8d90a2",
-            "secondary-fixed-dim": "#4edea3",
-            "error-container": "#93000a",
-            "on-tertiary": "#67001b",
-            "tertiary": "#ffb2b7",
-            "surface-bright": "#37393e",
-            "surface-container-high": "#282a2e",
-            "surface-container": "#1e2024",
-            "on-error": "#690005",
-            "on-error-container": "#ffdad6",
-            "inverse-surface": "#e2e2e8",
-            "on-tertiary-container": "#ffdcdd",
-            "primary-container": "#0052ff",
-            "inverse-on-surface": "#2f3035",
-            "on-primary-fixed-variant": "#0038b6",
-            "primary-fixed": "#dde1ff",
-            "on-background": "#e2e2e8",
-            "on-secondary": "#003824",
-            "surface-container-lowest": "#0c0e12",
-            "tertiary-container": "#c71941",
-            "on-surface-variant": "#c3c5d9",
-            "on-secondary-container": "#00311f",
-            "inverse-primary": "#004ced",
-            "surface-container-low": "#1a1c20",
-            "on-tertiary-fixed-variant": "#92002a",
-            "outline-variant": "#434656",
-            "secondary-fixed-dim": "#4edea3"
-          },
-          fontFamily: {
-            "headline": ["Manrope"],
-            "body": ["Inter"],
-            "label": ["Inter"]
-          },
-          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-        },
-      },
-    }
-  </script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-    }
-    .glass-effect {
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-<!-- Shared Component: TopAppBar -->
-<header class="fixed top-0 left-0 w-full flex items-center justify-between px-6 h-16 bg-[#111318]/60 backdrop-blur-xl z-50">
-<div class="flex items-center gap-4">
-<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container">
-<img alt="User profile portrait" class="w-full h-full object-cover" data-alt="Close up portrait of a professional user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC682orePp2KVRPSiXAgLrfhYzW_oux6vUiuFQvyuQXet8NDsh7YRNOlBZt92KM33_74f__YWCZlnn0vHGTbxeJIxLBytKEnsZZeWZqp5s2BKPcbuGK0gINR3sN2R2rPqjZXg2Wac9PE0nox0iofY5sjNkZwMrJnBJgHC2UwY6JeRkyt1eitMJYl8Gsc8ha587fr0VGxhAFtLodywRAJ6Twk5wY-v6GBpU3Jizr8uwCvJft4k45HXzoKcIZ2SmMGd4vBoKMRfnEzeIS"/>
-</div>
-<h1 class="font-manrope font-bold tracking-tight text-lg text-[#b7c4ff]">September 2023</h1>
-</div>
-<div class="flex items-center gap-4">
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#282a2e] transition-colors duration-200 active:scale-95">
-<span class="material-symbols-outlined text-[#b7c4ff]" data-icon="notifications">notifications</span>
-</button>
-</div>
-</header>
-<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto space-y-8">
-<!-- Header Section: Event Headline & Net Cost -->
-<section class="relative">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-<div class="space-y-1">
-<span class="font-label text-xs uppercase tracking-[0.2em] text-outline">Group Expense</span>
-<h2 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tight text-on-surface">Dinner at Dishoom</h2>
-</div>
-<!-- Net Cost Summary (Bento-style large card) -->
-<div class="bg-surface-container-low rounded-[2rem] p-8 min-w-[280px] relative overflow-hidden group">
-<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
-<p class="font-label text-sm text-on-surface-variant mb-2">Your actual spend</p>
-<div class="flex items-baseline gap-1">
-<span class="font-headline font-extrabold text-5xl text-on-surface">£40.00</span>
-</div>
-<div class="mt-4 flex items-center gap-2">
-<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
-<span class="text-xs font-medium text-secondary">Fully Reimbursed</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Main Transaction Detail -->
-<section class="grid grid-cols-1 md:grid-cols-12 gap-6">
-<div class="md:col-span-8 space-y-6">
-<div class="bg-surface-container rounded-[2rem] p-6 relative">
-<div class="flex items-start justify-between">
-<div class="flex gap-5">
-<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center">
-<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="restaurant">restaurant</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-xl text-on-surface">Initial Payment</h3>
-<p class="text-on-surface-variant text-sm">Paid to Dishoom Kensington • Sep 14, 2023</p>
-</div>
-</div>
-<div class="text-right">
-<span class="font-headline font-bold text-2xl text-tertiary">-£120.00</span>
-</div>
-</div>
-</div>
-<!-- Linked Reimbursements List -->
-<div class="space-y-4">
-<div class="flex items-center justify-between px-2">
-<h4 class="font-headline font-bold text-lg text-on-surface-variant">Linked Reimbursements</h4>
-<span class="text-xs font-label text-outline bg-surface-container-high px-3 py-1 rounded-full">2 Transactions</span>
-</div>
-<div class="space-y-3 relative">
-<!-- Connection Line Visual -->
-<div class="absolute left-12 top-0 bottom-0 w-[2px] bg-outline-variant/20 -z-10"></div>
-<!-- Reimbursement Card 1 -->
-<div class="bg-surface-container-low rounded-2xl p-5 ml-6 relative group hover:bg-surface-container transition-colors duration-200">
-<div class="absolute -left-[1.65rem] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-surface-container border-2 border-secondary"></div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full overflow-hidden">
-<img alt="John's avatar" class="w-full h-full object-cover" data-alt="Portrait of a young man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEV773NGIT5avAtACjH3MnYfIetc4aEydmVrlMtjkjTDuJc9TLtioWKbwOEGtVatHnsWbgLVioVwdg_VvqBSaTndpRXyAC0QhEy-IuBD0qEeFAPT_VSn6TRtlD1QgyUF03H5gUZdQYX2OcuEEy6BgqHRHQ6LVOApdDZQM7y6UjLgLlXpogCNi1GbF9U1pRnFD_tWZ2wUY4O1v3HGb8nRvkvuNUep0RmRUCKQu-rkaBdbPdlvLWuOEPazgCkbFVTHg4guYrtZh8bksa"/>
-</div>
-<div>
-<p class="font-headline font-semibold text-on-surface">John paid you</p>
-<p class="text-xs text-on-surface-variant">Via Bank Transfer • 2h ago</p>
-</div>
-</div>
-<span class="font-headline font-bold text-lg text-secondary">+£40.00</span>
-</div>
-</div>
-<!-- Reimbursement Card 2 -->
-<div class="bg-surface-container-low rounded-2xl p-5 ml-6 relative group hover:bg-surface-container transition-colors duration-200">
-<div class="absolute -left-[1.65rem] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-surface-container border-2 border-secondary"></div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full overflow-hidden">
-<img alt="Sarah's avatar" class="w-full h-full object-cover" data-alt="Portrait of a woman with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZNAlxUjz2qtDfmK_56k9KMB-1npHhKTAS1sc811qwmrsD4-obhmWuCT1h2k_5nrwRR12nUbnmv_SRvU7LGH45fKDT53pLFEIKsZ_pX1BGNA6_ehAqyar7onPcbHiKPDXVE2xSJAl25HgknnGs3nulRRYRyNFsMGw3El237yanj7MxFwtWgWPQI-JBTAENX55jlW3m4EjSzGxYFccoziGpT1KJuYYuamGgPZgm6KJWZrlKTezJCKL2-WZY-NZL3PxO1PNb6XrRuuJq"/>
-</div>
-<div>
-<p class="font-headline font-semibold text-on-surface">Sarah paid you</p>
-<p class="text-xs text-on-surface-variant">Via Split Link • Yesterday</p>
-</div>
-</div>
-<span class="font-headline font-bold text-lg text-secondary">+£40.00</span>
-</div>
-</div>
-<!-- Add Button Internal -->
-<button class="flex items-center gap-4 ml-6 p-5 w-full rounded-2xl border-2 border-dashed border-outline-variant/30 text-outline hover:border-primary/50 hover:text-primary transition-all duration-300">
-<div class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low">
-<span class="material-symbols-outlined" data-icon="add">add</span>
-</div>
-<span class="font-headline font-bold">Link Transaction</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Sidebar: Insights & Actions -->
-<div class="md:col-span-4 space-y-6">
-<!-- Visualization Card -->
-<div class="bg-surface-container-low rounded-[2rem] p-6 space-y-6">
-<h4 class="font-headline font-bold text-on-surface">Cost Breakdown</h4>
-<div class="space-y-4">
-<div class="flex justify-between items-end">
-<span class="text-sm text-on-surface-variant">Total Bill</span>
-<span class="text-sm font-semibold">£120.00</span>
-</div>
-<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden flex">
-<div class="h-full bg-secondary w-2/3"></div>
-<div class="h-full bg-primary w-1/3"></div>
-</div>
-<div class="grid grid-cols-2 gap-4 pt-2">
-<div class="space-y-1">
-<div class="flex items-center gap-1.5">
-<div class="w-2 h-2 rounded-full bg-secondary"></div>
-<span class="text-[10px] uppercase font-bold text-on-surface-variant">Recovered</span>
-</div>
-<p class="text-lg font-headline font-bold">£80.00</p>
-</div>
-<div class="space-y-1">
-<div class="flex items-center gap-1.5">
-<div class="w-2 h-2 rounded-full bg-primary"></div>
-<span class="text-[10px] uppercase font-bold text-on-surface-variant">Personal</span>
-</div>
-<p class="text-lg font-headline font-bold">£40.00</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Quick Actions -->
-<div class="space-y-3">
-<button class="w-full py-4 px-6 bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold rounded-xl active:scale-95 transition-all duration-200 flex items-center justify-center gap-2">
-<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
-            Request Remainder
-          </button>
-<button class="w-full py-4 px-6 bg-surface-container-high text-on-surface font-headline font-bold rounded-xl hover:bg-[#282a2e] active:scale-95 transition-all duration-200">
-            Export Receipt
-          </button>
-</div>
-<!-- Automation Status -->
-<div class="bg-surface-container-lowest/50 rounded-2xl p-4 flex items-center gap-4">
-<div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
-<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
-</div>
-<div>
-<p class="text-xs font-bold text-on-surface">Smart Matching On</p>
-<p class="text-[10px] text-on-surface-variant">Incoming payments are auto-linked.</p>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Shared Component: BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#111318]/60 backdrop-blur-xl rounded-t-[2rem]">
-<!-- Dashboard -->
-<a class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90" href="#">
-<span class="material-symbols-outlined mb-1" data-icon="dashboard">dashboard</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
-</a>
-<!-- Transactions (Active) -->
-<a class="flex flex-col items-center justify-center text-[#b7c4ff] bg-[#1e2024] rounded-2xl py-2 px-4 active:scale-90 transition-transform duration-200" href="#">
-<span class="material-symbols-outlined mb-1" data-icon="receipt_long">receipt_long</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Transactions</span>
-</a>
-<!-- Import -->
-<a class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90" href="#">
-<span class="material-symbols-outlined mb-1" data-icon="add_circle">add_circle</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Import</span>
-</a>
-<!-- Insights -->
-<a class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90" href="#">
-<span class="material-symbols-outlined mb-1" data-icon="insights">insights</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Insights</span>
-</a>
-</nav>
-</body></html>
+    <header class="fixed top-0 left-0 w-full flex items-center justify-between px-6 h-16 bg-[#111318]/60 backdrop-blur-xl z-50">
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container">
+                <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC682orePp2KVRPSiXAgLrfhYzW_oux6vUiuFQvyuQXet8NDsh7YRNOlBZt92KM33_74f__YWCZlnn0vHGTbxeJIxLBytKEnsZZeWZqp5s2BKPcbuGK0gINR3sN2R2rPqjZXg2Wac9PE0nox0iofY5sjNkZwMrJnBJgHC2UwY6JeRkyt1eitMJYl8Gsc8ha587fr0VGxhAFtLodywRAJ6Twk5wY-v6GBpU3Jizr8uwCvJft4k45HXzoKcIZ2SmMGd4vBoKMRfnEzeIS"/>
+            </div>
+            <h1 class="font-headline font-bold text-lg text-[#b7c4ff]">September 2023</h1>
+        </div>
+        <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#282a2e]">
+            <span class="material-symbols-outlined text-[#b7c4ff]">notifications</span>
+        </button>
+    </header>
+
+    <main class="pt-24 pb-32 px-6 max-w-5xl mx-auto space-y-8">
+        <section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="space-y-1">
+                <span class="text-xs uppercase tracking-[0.2em] text-outline">Group Expense</span>
+                <h2 class="font-headline font-extrabold text-4xl tracking-tight">Dinner at Dishoom</h2>
+            </div>
+            <div class="bg-surface-container-low rounded-[2rem] p-8 min-w-[280px] border-l-4 border-secondary">
+                <p class="text-sm text-on-surface-variant mb-2">Your actual spend</p>
+                <span class="font-headline font-extrabold text-5xl">£40.00</span>
+                <div class="mt-4 flex items-center gap-2 text-secondary text-xs font-medium">
+                    <div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+                    Fully Reimbursed
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-8 space-y-6">
+                <div class="bg-surface-container rounded-[2rem] p-6 flex justify-between items-start">
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center text-tertiary">
+                            <span class="material-symbols-outlined text-3xl">restaurant</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline font-bold text-xl">Initial Payment</h3>
+                            <p class="text-on-surface-variant text-sm">Dishoom Kensington • Sep 14, 2023</p>
+                        </div>
+                    </div>
+                    <span class="font-headline font-bold text-2xl text-tertiary">-£120.00</span>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-headline font-bold text-lg text-on-surface-variant px-2">Linked Reimbursements</h4>
+                    <div class="space-y-3 relative">
+                        <div class="absolute left-6 top-0 bottom-0 w-[2px] bg-outline-variant/20"></div>
+                        
+                        <div class="bg-surface-container-low rounded-2xl p-5 ml-12 flex justify-between items-center hover:bg-surface-container transition-colors">
+                            <div class="flex items-center gap-4">
+                                <img class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEV773NGIT5avAtACjH3MnYfIetc4aEydmVrlMtjkjTDuJc9TLtioWKbwOEGtVatHnsWbgLVioVwdg_VvqBSaTndpRXyAC0QhEy-IuBD0qEeFAPT_VSn6TRtlD1QgyUF03H5gUZdQYX2OcuEEy6BgqHRHQ6LVOApdDZQM7y6UjLgLlXpogCNi1GbF9U1pRnFD_tWZ2wUY4O1v3HGb8nRvkvuNUep0RmRUCKQu-rkaBdbPdlvLWuOEPazgCkbFVTHg4guYrtZh8bksa" alt="John">
+                                <div>
+                                    <p class="font-semibold">John paid you</p>
+                                    <p class="text-xs text-on-surface-variant">Bank Transfer • 2h ago</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-secondary">+£40.00</span>
+                        </div>
+
+                        <div class="bg-surface-container-low rounded-2xl p-5 ml-12 flex justify-between items-center hover:bg-surface-container transition-colors">
+                            <div class="flex items-center gap-4">
+                                <img class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZNAlxUjz2qtDfmK_56k9KMB-1npHhKTAS1sc811qwmrsD4-obhmWuCT1h2k_5nrwRR12nUbnmv_SRvU7LGH45fKDT53pLFEIKsZ_pX1BGNA6_ehAqyar7onPcbHiKPDXVE2xSJAl25HgknnGs3nulRRYRyNFsMGw3El237yanj7MxFwtWgWPQI-JBTAENX55jlW3m4EjSzGxYFccoziGpT1KJuYYuamGgPZgm6KJWZrlKTezJCKL2-WZY-NZL3PxO1PNb6XrRuuJq" alt="Sarah">
+                                <div>
+                                    <p class="font-semibold">Sarah paid you</p>
+                                    <p class="text-xs text-on-surface-variant">Split Link • Yesterday</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-secondary">+£40.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 space-y-6">
+                <div class="bg-surface-container-low rounded-[2rem] p-6 space-y-4">
+                    <h4 class="font-bold">Cost Breakdown</h4>
+                    <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden flex">
+                        <div class="bg-secondary w-2/3"></div>
+                        <div class="bg-primary w-1/3"></div>
+                    </div>
+                    <div class="flex justify-between text-xs font-bold uppercase text-on-surface-variant">
+                        <span>Recovered: £80</span>
+                        <span>Personal: £40</span>
+                    </div>
+                </div>
+                <button class="w-full py-4 bg-primary text-surface font-bold rounded-xl active:scale-95 transition-transform">Request Remainder</button>
+            </div>
+        </section>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#111318]/90 backdrop-blur-xl rounded-t-[2rem]">
+        <a href="index.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Dashboard</span>
+        </a>
+        <a href="alltransactions.html" class="flex flex-col items-center text-[#b7c4ff] bg-[#1e2024] rounded-2xl py-2 px-4 transition-all">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Transactions</span>
+        </a>
+        <a href="uploadstatement.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined text-3xl">add_circle</span>
+            <span class="text-[10px] font-medium uppercase mt-0.5">Import</span>
+        </a>
+        <a href="insights.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined">insights</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Insights</span>
+        </a>
+    </nav>
+</body>
+</html>

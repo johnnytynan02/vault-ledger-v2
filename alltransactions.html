@@ -1,293 +1,145 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Transaction Ledger | Digital Vault</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Transaction Ledger | Digital Vault</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "on-secondary-fixed": "#002113",
-                        "on-primary": "#002682",
-                        "primary-fixed-dim": "#b7c4ff",
-                        "error": "#ffb4ab",
-                        "surface": "#111318",
-                        "surface-variant": "#333539",
-                        "on-secondary-fixed-variant": "#005236",
                         "primary": "#b7c4ff",
                         "secondary": "#4edea3",
-                        "tertiary-fixed": "#ffdadb",
-                        "on-surface": "#e2e2e8",
-                        "on-primary-fixed": "#001452",
-                        "background": "#111318",
-                        "on-tertiary-fixed": "#40000d",
-                        "tertiary-fixed-dim": "#ffb2b7",
-                        "surface-tint": "#b7c4ff",
-                        "surface-dim": "#111318",
-                        "on-primary-container": "#dfe3ff",
-                        "secondary-fixed": "#6ffbbe",
-                        "surface-container-highest": "#333539",
-                        "outline": "#8d90a2",
-                        "secondary-fixed-dim": "#4edea3",
-                        "error-container": "#93000a",
-                        "on-tertiary": "#67001b",
                         "tertiary": "#ffb2b7",
-                        "surface-bright": "#37393e",
-                        "surface-container-high": "#282a2e",
-                        "surface-container": "#1e2024",
-                        "on-error": "#690005",
-                        "on-error-container": "#ffdad6",
-                        "inverse-surface": "#e2e2e8",
-                        "on-tertiary-container": "#ffdcdd",
-                        "primary-container": "#0052ff",
-                        "inverse-on-surface": "#2f3035",
-                        "on-primary-fixed-variant": "#0038b6",
-                        "primary-fixed": "#dde1ff",
-                        "on-background": "#e2e2e8",
-                        "on-secondary": "#003824",
-                        "surface-container-lowest": "#0c0e12",
-                        "tertiary-container": "#c71941",
+                        "surface": "#111318",
+                        "background": "#111318",
+                        "on-surface": "#e2e2e8",
                         "on-surface-variant": "#c3c5d9",
-                        "on-secondary-container": "#00311f",
-                        "inverse-primary": "#004ced",
+                        "surface-container": "#1e2024",
+                        "surface-container-lowest": "#0c0e12",
                         "surface-container-low": "#1a1c20",
-                        "on-tertiary-fixed-variant": "#92002a",
                         "outline-variant": "#434656",
-                        "secondary-container": "#00a572"
+                        "primary-container": "#0052ff",
+                        "secondary-container": "#00a572",
+                        "tertiary-container": "#c71941",
                     },
                     fontFamily: {
                         "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "body": ["Inter"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
             },
         }
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            background-color: #111318;
-            color: #e2e2e8;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #282a2e;
-            border-radius: 10px;
-        }
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #111318; color: #e2e2e8; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
+</head>
 <body class="font-body selection:bg-primary-container selection:text-on-primary-container">
-<!-- Top Navigation Shell -->
-<nav class="fixed top-0 left-0 w-full flex items-center justify-between px-6 h-16 bg-[#111318]/60 backdrop-blur-xl z-50">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden">
-<img alt="User profile portrait" class="w-full h-full object-cover" data-alt="Close up professional portrait of a user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfgXi8W4mTz4KKwwf0GNEEiaOFP8T04pcS1FlnNqt7ZrfV-nlTdpU9DPL-9TYknm25sV6ogcUTos7rZHAYcM58LxvR1q4THGC8SJ11z0tGaXWtjWLAulbFb8xQ6Irfbk1ny0-WSgq9wB8bUNTRnaNBxP-Sbv3qa90dll_H_kXKW6feBOj0JDuS20byXg3ENgSZ9rrOnhDW5NpzPHeRbeo1FAny18Pi2DugXPXN89_bVvF3F7zjSA3nGfAv-szS1eTY3S0wC1pAVwjZ"/>
-</div>
-<span class="font-headline font-extrabold text-[#b7c4ff] text-xl">September 2023</span>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 rounded-full hover:bg-[#282a2e] transition-colors duration-200 active:scale-95 text-[#b7c4ff]">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-</div>
-</nav>
-<main class="pt-20 pb-32 px-4 max-w-2xl mx-auto space-y-8">
-<!-- Search & Filter Block -->
-<section class="space-y-6">
-<!-- Search Bar -->
-<div class="relative group">
-<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-on-surface-variant">
-<span class="material-symbols-outlined text-lg">search</span>
-</div>
-<input class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/40 transition-all duration-300" placeholder="Search merchants or categories..." type="text"/>
-</div>
-<!-- Month Selection Pills -->
-<div class="flex items-center gap-3 overflow-x-auto pb-2 custom-scrollbar no-scrollbar">
-<button class="flex-shrink-0 px-5 py-2 rounded-full bg-primary-container text-on-primary-container font-headline font-bold text-sm transition-all shadow-[0_4px_12px_rgba(0,82,255,0.2)]">
-                    September 2023
-                </button>
-<button class="flex-shrink-0 px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-headline font-bold text-sm hover:bg-surface-container transition-all">
-                    August 2023
-                </button>
-<button class="flex-shrink-0 px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-headline font-bold text-sm hover:bg-surface-container transition-all">
-                    July 2023
-                </button>
-<button class="flex-shrink-0 px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-headline font-bold text-sm hover:bg-surface-container transition-all">
-                    June 2023
-                </button>
-</div>
-</section>
-<!-- Transaction Feed -->
-<section class="space-y-8">
-<!-- Date Group -->
-<div>
-<h2 class="font-headline text-xs font-extrabold uppercase tracking-[0.2em] text-outline-variant px-4 mb-4">Today, Sep 14</h2>
-<div class="space-y-3">
-<!-- Transaction Item: AI Categorized -->
-<div class="relative overflow-hidden group">
-<!-- Swipe Action Underlay -->
-<div class="absolute inset-0 bg-primary-container flex items-center justify-end px-6 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-on-primary-container">edit</span>
-</div>
-<!-- Main Card -->
-<div class="relative bg-surface-container-low rounded-2xl p-4 flex items-center justify-between hover:translate-x-[-4px] transition-transform duration-300 cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-on-surface">Waitrose &amp; Partners</h3>
-<div class="flex items-center gap-2 mt-0.5">
-<span class="text-xs text-on-surface-variant">Groceries</span>
-<div class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container/20 rounded-full">
-<div class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(78,222,163,0.5)]"></div>
-<span class="text-[10px] font-bold text-secondary uppercase tracking-wider">AI Categorized</span>
-</div>
-</div>
-</div>
-</div>
-<div class="text-right">
-<span class="font-headline font-extrabold text-lg text-on-surface">-£42.50</span>
-<p class="text-[10px] text-outline-variant font-medium">12:40 PM</p>
-</div>
-</div>
-</div>
-<!-- Transaction Item: Pending Review -->
-<div class="relative bg-surface-container-low rounded-2xl p-4 flex items-center justify-between hover:translate-x-[-4px] transition-transform duration-300 cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-on-surface">Octopus Energy</h3>
-<div class="flex items-center gap-2 mt-0.5">
-<span class="text-xs text-on-surface-variant">Utilities</span>
-<div class="flex items-center gap-1 px-2 py-0.5 bg-tertiary-container/20 rounded-full border border-tertiary/10">
-<span class="material-symbols-outlined text-[14px] text-tertiary">error</span>
-<span class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Pending Review</span>
-</div>
-</div>
-</div>
-</div>
-<div class="text-right">
-<span class="font-headline font-extrabold text-lg text-on-surface">-£115.00</span>
-<p class="text-[10px] text-outline-variant font-medium">09:15 AM</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Date Group -->
-<div>
-<h2 class="font-headline text-xs font-extrabold uppercase tracking-[0.2em] text-outline-variant px-4 mb-4">Yesterday, Sep 13</h2>
-<div class="space-y-3">
-<!-- Transaction Item: Income -->
-<div class="relative bg-surface-container-low border-l-4 border-secondary rounded-2xl p-4 flex items-center justify-between hover:translate-x-[-4px] transition-transform duration-300 cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-on-surface">TechCorp Payroll</h3>
-<div class="flex items-center gap-2 mt-0.5">
-<span class="text-xs text-on-surface-variant">Salary</span>
-<div class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container/20 rounded-full">
-<div class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(78,222,163,0.5)]"></div>
-<span class="text-[10px] font-bold text-secondary uppercase tracking-wider">AI Categorized</span>
-</div>
-</div>
-</div>
-</div>
-<div class="text-right">
-<span class="font-headline font-extrabold text-lg text-secondary">+£3,450.00</span>
-<p class="text-[10px] text-outline-variant font-medium">02:00 PM</p>
-</div>
-</div>
-<!-- Transaction Item: Transport -->
-<div class="relative bg-surface-container-low rounded-2xl p-4 flex items-center justify-between hover:translate-x-[-4px] transition-transform duration-300 cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_subway</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-on-surface">TfL Travel Charge</h3>
-<div class="flex items-center gap-2 mt-0.5">
-<span class="text-xs text-on-surface-variant">Transport</span>
-<div class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container/20 rounded-full">
-<div class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(78,222,163,0.5)]"></div>
-<span class="text-[10px] font-bold text-secondary uppercase tracking-wider">AI Categorized</span>
-</div>
-</div>
-</div>
-</div>
-<div class="text-right">
-<span class="font-headline font-extrabold text-lg text-on-surface">-£8.40</span>
-<p class="text-[10px] text-outline-variant font-medium">08:45 AM</p>
-</div>
-</div>
-<!-- Transaction Item: Subscriptions -->
-<div class="relative bg-surface-container-low rounded-2xl p-4 flex items-center justify-between hover:translate-x-[-4px] transition-transform duration-300 cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">subscriptions</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-on-surface">Netflix</h3>
-<div class="flex items-center gap-2 mt-0.5">
-<span class="text-xs text-on-surface-variant">Entertainment</span>
-<div class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container/20 rounded-full">
-<div class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(78,222,163,0.5)]"></div>
-<span class="text-[10px] font-bold text-secondary uppercase tracking-wider">AI Categorized</span>
-</div>
-</div>
-</div>
-</div>
-<div class="text-right">
-<span class="font-headline font-extrabold text-lg text-on-surface">-£15.99</span>
-<p class="text-[10px] text-outline-variant font-medium">01:00 AM</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Bottom Navigation Shell -->
-<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#111318]/60 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-8px_32px_rgba(0,0,0,0.3)]">
-<button class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90">
-<span class="material-symbols-outlined mb-1">dashboard</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
-</button>
-<button class="flex flex-col items-center justify-center text-[#b7c4ff] bg-[#1e2024] rounded-2xl py-2 px-4 transition-all duration-200 active:scale-90">
-<span class="material-symbols-outlined mb-1">receipt_long</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Transactions</span>
-</button>
-<button class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90">
-<span class="material-symbols-outlined mb-1">add_circle</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Import</span>
-</button>
-<button class="flex flex-col items-center justify-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all duration-200 active:scale-90">
-<span class="material-symbols-outlined mb-1">insights</span>
-<span class="font-inter text-[10px] font-medium uppercase tracking-wider">Insights</span>
-</button>
-</footer>
-</body></html>
+
+    <nav class="fixed top-0 left-0 w-full flex items-center justify-between px-6 h-16 bg-[#111318]/60 backdrop-blur-xl z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden">
+                <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfgXi8W4mTz4KKwwf0GNEEiaOFP8T04pcS1FlnNqt7ZrfV-nlTdpU9DPL-9TYknm25sV6ogcUTos7rZHAYcM58LxvR1q4THGC8SJ11z0tGaXWtjWLAulbFb8xQ6Irfbk1ny0-WSgq9wB8bUNTRnaNBxP-Sbv3qa90dll_H_kXKW6feBOj0JDuS20byXg3ENgSZ9rrOnhDW5NpzPHeRbeo1FAny18Pi2DugXPXN89_bVvF3F7zjSA3nGfAv-szS1eTY3S0wC1pAVwjZ"/>
+            </div>
+            <span class="font-headline font-extrabold text-[#b7c4ff] text-xl">September 2023</span>
+        </div>
+        <button class="p-2 rounded-full hover:bg-[#282a2e] text-[#b7c4ff]">
+            <span class="material-symbols-outlined">notifications</span>
+        </button>
+    </nav>
+
+    <main class="pt-20 pb-32 px-4 max-w-2xl mx-auto space-y-8">
+        <section class="space-y-6">
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-on-surface-variant">
+                    <span class="material-symbols-outlined text-lg">search</span>
+                </div>
+                <input class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 text-on-surface focus:ring-2 focus:ring-primary/40" placeholder="Search transactions..." type="text"/>
+            </div>
+            
+            <div class="flex items-center gap-3 overflow-x-auto no-scrollbar">
+                <button class="flex-shrink-0 px-5 py-2 rounded-full bg-primary-container text-on-primary-container font-headline font-bold text-sm">September 2023</button>
+                <button class="flex-shrink-0 px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-headline font-bold text-sm">August 2023</button>
+                <button class="flex-shrink-0 px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-headline font-bold text-sm">July 2023</button>
+            </div>
+        </section>
+
+        <section class="space-y-8">
+            <div>
+                <h2 class="font-headline text-xs font-extrabold uppercase tracking-[0.2em] text-outline-variant px-4 mb-4">Today, Sep 14</h2>
+                <div class="space-y-3">
+                    <div class="bg-surface-container-low rounded-2xl p-4 flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                            </div>
+                            <div>
+                                <h3 class="font-headline font-bold text-on-surface">Waitrose & Partners</h3>
+                                <div class="flex items-center gap-2 mt-0.5">
+                                    <span class="text-xs text-on-surface-variant">Groceries</span>
+                                    <span class="text-[10px] font-bold text-secondary uppercase bg-secondary-container/20 px-2 py-0.5 rounded-full">AI Categorized</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-headline font-extrabold text-lg text-on-surface">-£42.50</span>
+                            <p class="text-[10px] text-outline-variant">12:40 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-low rounded-2xl p-4 flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                            </div>
+                            <div>
+                                <h3 class="font-headline font-bold text-on-surface">Octopus Energy</h3>
+                                <div class="flex items-center gap-2 mt-0.5">
+                                    <span class="text-xs text-on-surface-variant">Utilities</span>
+                                    <span class="text-[10px] font-bold text-tertiary uppercase bg-tertiary-container/20 px-2 py-0.5 rounded-full">Pending Review</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-headline font-extrabold text-lg text-on-surface">-£115.00</span>
+                            <p class="text-[10px] text-outline-variant">09:15 AM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#111318]/90 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-8px_32px_rgba(0,0,0,0.3)]">
+        
+        <a href="index.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Dashboard</span>
+        </a>
+
+        <a href="alltransactions.html" class="flex flex-col items-center text-[#b7c4ff] bg-[#1e2024] rounded-2xl py-2 px-4 transition-all">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Transactions</span>
+        </a>
+
+        <a href="uploadstatement.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined text-3xl">add_circle</span>
+            <span class="text-[10px] font-medium uppercase mt-0.5">Import</span>
+        </a>
+
+        <a href="insights.html" class="flex flex-col items-center text-[#434656] py-2 px-4 hover:text-[#b7c4ff] transition-all">
+            <span class="material-symbols-outlined">insights</span>
+            <span class="text-[10px] font-medium uppercase mt-1">Insights</span>
+        </a>
+
+    </nav>
+</body>
+</html>
